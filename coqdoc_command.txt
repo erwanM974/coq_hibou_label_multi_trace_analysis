@@ -1,1 +1,1 @@
-coqdoc -s coq_proof_ictss2020_a_small_step_approach_to_multitrace_checking_against_interactions.v -o index.html
+coqdoc -s coq_proof_ictss2020_a_small_step_approach_to_multitrace_checking_against_interactions.v
