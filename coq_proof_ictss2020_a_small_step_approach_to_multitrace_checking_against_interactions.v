@@ -1565,6 +1565,8 @@ Qed.
 (* =========================================================== *)
 
 (**
+** Proof of conformity w.r.t. multitrace semantics
+
 Finally, the conformity of "mu_analysis" w.r.t. the multitrace semantics "is_accept_mult" is stated by the theorem "verd_Paccept_is_mult_accept" below.
 It is implied by the "verd_Paccept_is_proj_accept" theorem and the characterization of "is_accept_mult" as the projection of "is_accept" (Lemma "accept_mult_is_proj_accept").
 **)
