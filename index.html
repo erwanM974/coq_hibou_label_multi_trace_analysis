@@ -22,6 +22,36 @@
 <div class="doc">
 <a id="lab1"></a><h1 class="section">A small-step approach to multitrace checking against interactions</h1>
 
+Erwan Mahe - 2020
+
+<div class="paragraph"> </div>
+
+We use Coq to prove the correctness of an oracle algorithm with regards to a formal semantics.
+This proof accompanies the publication of a paper in the 2020 edition of the ICTSS conference (32ND IFIP INTERNATIONAL CONFERENCE ON TESTING SOFTWARE AND SYSTEMS).
+
+<div class="paragraph"> </div>
+
+<a id="lab2"></a><h2 class="section">Context</h2>
+
+
+<div class="paragraph"> </div>
+
+This formal semantics defines which are the behaviors that are specified by an interaction model (akin to Message Sequence Charts or UML Sequence Diagrams).
+Those behaviors are described by traces which are sequences of atomic actions that can be observed on the interfaces of a distributed system's sub-systems.
+In the absence of a global clock, the observations of those atomic actions cannot be ordered globally. As such we rather have multi-traces i.e. sets of traces, each describing the behavior of a given sub-system.
+
+<div class="paragraph"> </div>
+
+We define the semantics of interactions in terms of traces and of multi-traces.
+
+<div class="paragraph"> </div>
+
+We then introduce an algorithm to solve the membership problem for multi-traces i.e. able to determine whether or not a given multi-trace belongs to the semantics of a given interaction.
+
+<div class="paragraph"> </div>
+
+<a id="lab3"></a><h2 class="section">Dependencies</h2>
+
 Below are listed the libraries required for this Coq proof.
 
 <div class="paragraph"> </div>
@@ -65,10 +95,10 @@ Below are listed the libraries required for this Coq proof.
 
 <div class="paragraph"> </div>
 
-<a id="lab2"></a><h1 class="section">Preliminaries</h1>
+<a id="lab4"></a><h1 class="section">Preliminaries</h1>
 
 In the following, we introduce some basic types and functions that will allow us to manipulate concepts in the domain of the observation of distributed system executions.
-<a id="lab3"></a><h2 class="section">Signature &amp; Actions</h2>
+<a id="lab5"></a><h2 class="section">Signature &amp; Actions</h2>
 
 The set of lifelines L is defined as a finite set of (any integer) cardinal Lcard indexed by 
 {1,...,LCard} using the Vectors.Fin library.
@@ -162,7 +192,7 @@ We can now define actions with the "Action" type. Below are also define the equa
 </div>
 
 <div class="doc">
-<a id="lab4"></a><h2 class="section">Trace &amp; Multi-Trace Language</h2>
+<a id="lab6"></a><h2 class="section">Trace &amp; Multi-Trace Language</h2>
 
 The "Trace" type can then be defined as that of lists of actions ("Action" type).
 
@@ -358,7 +388,7 @@ Below is defined the concatenation operator "left_append_action_on_multitrace", 
 </div>
 
 <div class="doc">
-<a id="lab5"></a><h2 class="section">Projecting traces into multitraces</h2>
+<a id="lab7"></a><h2 class="section">Projecting traces into multitraces</h2>
 
 We define the "project_as_multitrace" function, which projects a globally collected trace into a corresponding locally collected multitrace.
 
@@ -475,10 +505,10 @@ We define the "project_as_multitrace" function, which projects a globally collec
 </div>
 
 <div class="doc">
-<a id="lab6"></a><h1 class="section">Interaction Language</h1>
+<a id="lab8"></a><h1 class="section">Interaction Language</h1>
 
 We now introduce formally aspects of our interaction modelling language.
-<a id="lab7"></a><h2 class="section">Syntax</h2>
+<a id="lab9"></a><h2 class="section">Syntax</h2>
 
 We first introduce an enumerated (inductive) type "LoopKind" to enumerate the different kinds of loops our formalism specify.
 
@@ -517,7 +547,7 @@ From basic building blocks which can either be the empty interaction "interactio
 </div>
 
 <div class="doc">
-<a id="lab8"></a><h2 class="section">Static analysis of interaction terms</h2>
+<a id="lab10"></a><h2 class="section">Static analysis of interaction terms</h2>
 
 The "express_empty" function can statically determine (based on a static analyse of the interaction term) whether or not a given interaction can accept/express the empty trace i.e. if it can allow the empty execution (nothing happens).
 As can be seen, we used a "Fixpoint" to define "express_empty", and it returns a computational-logic "bool" value (as opposed to an intuitionistic-logic "Prop").
@@ -603,7 +633,7 @@ From a given interaction "i" and lifeline "l" such that "avoids(i,l)=true", the 
 </div>
 
 <div class="doc">
-<a id="lab9"></a><h2 class="section">Managing positions with the Dewey Decimal Notation</h2>
+<a id="lab11"></a><h2 class="section">Managing positions with the Dewey Decimal Notation</h2>
 
 Interaction terms have a structure which is that of a binary tree. Indeed, operators used to construct interactions have an arity of at most 2. As a result, we can navigate within interaction terms using a position system in {1,2}^* akin to that of the Dewey Decimal Notation.
 We define the "Position" inductive type which form words on {1,2}^*, with "epsilon" being the empty position.
@@ -861,7 +891,7 @@ We now define a filter function "filterfront_on_avoid", which, for any interacti
 </div>
 
 <div class="doc">
-<a id="lab10"></a><h2 class="section">Identification &amp; Execution of immediately executable actions</h2>
+<a id="lab12"></a><h2 class="section">Identification &amp; Execution of immediately executable actions</h2>
 
 The manipulation of lists of "Position*Action" tuples in the previous section now allows us to define the notion of "frontier".
 For any interaction "i", "frontier i" is the list of "Position*Action" tuples "(p,a)" s.t. "a" is an immediately executable action of "i" and is to be found at position "p" within "i".
@@ -1434,10 +1464,10 @@ Its proof relies on an induction on the structure of interaction terms.
 </div>
 
 <div class="doc">
-<a id="lab11"></a><h1 class="section">Operational Semantics</h1>
+<a id="lab13"></a><h1 class="section">Operational Semantics</h1>
 
 We can now introduce our small-step operational semantics based on subsequent executions of frontier actions within interactions.
-<a id="lab12"></a><h2 class="section">Definitions</h2>
+<a id="lab14"></a><h2 class="section">Definitions</h2>
 
 "is_accept" is an inductive proposition s.t. for any interaction "i" and trace "t", "is_accept i t" states the membership of "t" to the trace semantics of "i".
 
@@ -1487,7 +1517,7 @@ Likewise, "is_accept_mult" is an inductive proposition s.t. for any interaction 
 
 <div class="paragraph"> </div>
 
-<a id="lab13"></a><h2 class="section">Characterization with projections</h2>
+<a id="lab15"></a><h2 class="section">Characterization with projections</h2>
 
 In the following, we prove that the semantics defined by "is_accept_mult" is in facts a projection of the semantics defined by "is_accept".
 The first theorem "accept_implies_mult_accept" states that for any interaction "i" and trace "t", if "is_accept i t" then "is_accept_mult i (project_as_multitrace t)".
@@ -1612,13 +1642,13 @@ Finally, we can conclude on the equivalence of both semantics via the projection
 </div>
 
 <div class="doc">
-<a id="lab14"></a><h1 class="section">MultiTrace membership analysis algorithm</h1>
+<a id="lab16"></a><h1 class="section">MultiTrace membership analysis algorithm</h1>
 
 In this section, we will define our multitrace analysis algorithm, which is able to solve the membership problem (w.r.t. the multitrace semantics "is_accept_mult") for any interaction "i" and multitrace "mu".
 
 <div class="paragraph"> </div>
 
-<a id="lab15"></a><h2 class="section">Matches</h2>
+<a id="lab17"></a><h2 class="section">Matches</h2>
 
 
 <div class="paragraph"> </div>
@@ -1690,7 +1720,7 @@ We then define "match_in_front" which tells if there is a match between any fron
 </div>
 
 <div class="doc">
-<a id="lab16"></a><h2 class="section">The algorithm proper</h2>
+<a id="lab18"></a><h2 class="section">The algorithm proper</h2>
 
 
 <div class="paragraph"> </div>
@@ -1733,7 +1763,7 @@ Below is defined the analysis algorithm itself, as a set of rules defining a gra
 </div>
 
 <div class="doc">
-<a id="lab17"></a><h2 class="section">Proof of conformity w.r.t. trace semantics</h2>
+<a id="lab19"></a><h2 class="section">Proof of conformity w.r.t. trace semantics</h2>
 
 
 <div class="paragraph"> </div>
@@ -1879,7 +1909,7 @@ Then, the conformity of "mu_analysis" w.r.t. the trace semantics "is_accept" is 
 </div>
 
 <div class="doc">
-<a id="lab18"></a><h2 class="section">Proof of conformity w.r.t. multitrace semantics</h2>
+<a id="lab20"></a><h2 class="section">Proof of conformity w.r.t. multitrace semantics</h2>
 
 
 <div class="paragraph"> </div>

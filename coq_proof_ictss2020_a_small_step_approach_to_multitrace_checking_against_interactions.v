@@ -1,6 +1,22 @@
 (* =========================================================== *)
 (**
 * A small-step approach to multitrace checking against interactions
+Erwan Mahe - 2020
+
+We use Coq to prove the correctness of an oracle algorithm with regards to a formal semantics.
+This proof accompanies the publication of a paper in the 2020 edition of the ICTSS conference (32ND IFIP INTERNATIONAL CONFERENCE ON TESTING SOFTWARE AND SYSTEMS).
+
+** Context
+
+This formal semantics defines which are the behaviors that are specified by an interaction model (akin to Message Sequence Charts or UML Sequence Diagrams).
+Those behaviors are described by traces which are sequences of atomic actions that can be observed on the interfaces of a distributed system's sub-systems.
+In the absence of a global clock, the observations of those atomic actions cannot be ordered globally. As such we rather have multi-traces i.e. sets of traces, each describing the behavior of a given sub-system.
+
+We define the semantics of interactions in terms of traces and of multi-traces.
+
+We then introduce an algorithm to solve the membership problem for multi-traces i.e. able to determine whether or not a given multi-trace belongs to the semantics of a given interaction.
+
+** Dependencies
 Below are listed the libraries required for this Coq proof.
 
 - "List" provides utilities on lists. We use lists - among other things - to represent traces.
