@@ -1,10 +1,34 @@
+(*
+Copyright 2020 Erwan Mahe (github.com/erwanM974)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*)
 (* =========================================================== *)
 (**
 * A small-step approach to multitrace checking against interactions
 Erwan Mahe - 2020
 
 We use Coq to prove the correctness of an oracle algorithm with regards to a formal semantics.
-This proof accompanies the publication of a paper in the 2020 edition of the ICTSS conference (32ND IFIP INTERNATIONAL CONFERENCE ON TESTING SOFTWARE AND SYSTEMS).
+
+This proof accompanies the publication of a paper, currently available on Arxiv:
+- #<a href="https://arxiv.org/abs/2009.01777">https://arxiv.org/abs/2009.01777</a>#
+
+The coq file itself is hosted on the following repository:
+- #<a href="https://github.com/erwanM974/coq_hibou_label_multi_trace_analysis">https://github.com/erwanM974/coq_hibou_label_multi_trace_analysis</a># 
+
+A prototype tool, which implements and extends upon 
+the multi-trace analysis algorithm presented here is available on the following repository:
+- #<a href="https://github.com/erwanM974/hibou_label">https://github.com/erwanM974/hibou_label</a># 
 
 ** Context
 

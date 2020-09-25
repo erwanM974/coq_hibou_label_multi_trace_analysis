@@ -1,1 +1,1 @@
-coqdoc -s coq_proof_ictss2020_a_small_step_approach_to_multitrace_checking_against_interactions.v
+coqdoc -s coq_hibou_label_multi_trace_analysis.v
